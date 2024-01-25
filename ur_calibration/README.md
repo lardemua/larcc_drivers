@@ -30,7 +30,7 @@ exist)
 
 ```bash
 # Replace your actual catkin_ws folder
-$ cd <catkin_ws>/src
+$ cd <catkin_ws>/launch
 $ catkin_create_pkg example_organization_ur_launch ur_client_library \
 -D "Package containing calibrations and launch files for our UR robots."
 # Create a skeleton package
@@ -52,7 +52,7 @@ respective launchfile in the driver:
 
 ```bash
 # Replace your actual catkin_ws folder
-$ cd <catkin_ws>/src/example_organization_ur_launch/launch
+$ cd <catkin_ws>/launch/example_organization_ur_launch/launch
 $ roscp ur_robot_driver ur10_bringup.launch ex-ur10-1.launch
 ```
 
