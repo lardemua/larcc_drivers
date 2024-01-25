@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur10e_robot">
+  <!--
+    This is a convenience top-level xacro which loads the macro for the UR10e
+    which defines the default values for the various "parameters files"
+    parameters for a UR10e.
+
+    This file is only useful when loading a stand-alone, completely isolated
+    robot with only default values for all parameters such as the kinematics,
+    visual and physical parameters and joint limits.
+
+    This file is not intended to be integrated into a larger scene or other
+    composite xacro.
+
+    Instead, xacro:include 'inc/ur10e_macro.xacro' and override the defaults
+    for the arguments to that macro.
+
+    Refer to 'inc/ur_macro.xacro' for more information.
+  -->
+    <link name="world"/>
+    <joint name="world_to_base_link" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+    </joint>
+
+<!--    <joint name="world_to_robotiq_arg2f_base_link" type="fixed">-->
+<!--        <parent link="world"/>-->
+<!--        <child link="robotiq_arg2f_base_link"/>-->
+<!--        <origin xyz="10 0 -0.5" rpy="0 0 0"/>-->
+<!--    </joint>-->
+
+    <xacro:include filename="$(find ur_description)/urdf/inc/ur10e_macro.xacro"/>
+    <xacro:ur10e_robot prefix="" />
+
+
+    <joint name="gripper_joint" type="fixed">
+        <parent link="tool0"/>
+        <child link="robotiq_arg2f_base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+    </joint>
+<!--    Place gripper-->
+    <xacro:include filename="$(find gripper)/urdf/robotiq_arg2f_140_model_macro.xacro" />
+    <xacro:robotiq_arg2f_140 prefix=""/>
+
+
+
+
+<!--  Sensor-->
+<!--  <xacro:include filename="$(find realsense2_description)/urdf/test_d435i_camera.urdf.xacro" />-->
+
+<!--  <xacro:realsense2_camera parent="base_link" use_nominal_extrinsics="true">-->
+<!--&lt;!&ndash;    For this manual calibration, drag the gripper (tool0_controller) to the camera mass-->
+<!--        center and record here the tf values (/base_link to /tool0_controller).&ndash;&gt;-->
+<!--&lt;!&ndash;    The second rotation value (P) you should add pi constant: 2.627 = −0,515 + pi &ndash;&gt;-->
+<!--&lt;!&ndash;      <origin xyz="0.785 -0.839 0.426" rpy="-3.104 2.471 -1.613"/>&ndash;&gt;-->
+<!--      <origin xyz="0.797 -0.803 0.432" rpy="3.135 2.462 -1.577"/>-->
+
+<!--  </xacro:realsense2_camera>-->
+
+<!--  <xacro:realsense2_camera use_nominal_extrinsics="true">-->
+<!--  </xacro:realsense2_camera>-->
+
+</robot>
