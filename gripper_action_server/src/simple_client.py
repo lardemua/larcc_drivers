@@ -11,8 +11,6 @@ def MyActionClient(cancel):
     client = actionlib.SimpleActionClient('/gripper_action_server', GripperControlAction)
     client.wait_for_server()
 
-
-
     goal = GripperControlGoal(goal="close", speed=255)
     client.send_goal(goal)
     # time.sleep(2)

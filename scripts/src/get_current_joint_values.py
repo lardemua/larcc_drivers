@@ -4,7 +4,7 @@ from UR10eArm import UR10eArm
 import rospy
 
 if __name__ == '__main__':
-    rospy.init_node("move_group_python_interface", anonymous=True)
+    rospy.init_node("get_current_joint_values", anonymous=True)
     # --------------------------------------------------------------------
     # -------------------------initialization-----------------------------
     # --------------------------------------------------------------------
@@ -17,4 +17,7 @@ if __name__ == '__main__':
 
     current_joints = move_group.get_current_joint_values()
     print("current_joints")
-    print(current_joints)
+
+    # Leave this way!!!! truly important. That's because the action goal is sent in this order:
+    # ["elbow_joint", "shoulder_lift_joint", "shoulder_pan_joint", "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
+    print([current_joints[2], current_joints[1], current_joints[0], current_joints[3], current_joints[4], current_joints[5]])
