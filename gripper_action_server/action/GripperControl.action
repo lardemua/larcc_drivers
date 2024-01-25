@@ -1,0 +1,16 @@
+#goal
+string goal
+int32 speed
+
+---
+#result
+string result
+bool object_detected
+float32 position
+
+---
+#feedback
+string feedback
+bool object_detected
+float32 position
+int32 status
