@@ -49,8 +49,7 @@
 
 <!--    Place d45i camera-->
     <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">
-<!--        <origin xyz="0.808 0.160 1.201" rpy="-3.092 0.390 -2.716"/>-->
-        <origin xyz="0.808 0.160 1.201" rpy="0.049592654 0.390 -2.716"/>
+        <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>
     </xacro:realsense2_camera>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
