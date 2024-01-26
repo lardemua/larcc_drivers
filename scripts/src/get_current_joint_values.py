@@ -2,6 +2,8 @@
 
 from UR10eArm import UR10eArm
 import rospy
+import tf
+
 
 if __name__ == '__main__':
     rospy.init_node("get_current_joint_values", anonymous=True)
@@ -21,3 +23,11 @@ if __name__ == '__main__':
     # Leave this way!!!! truly important. That's because the action goal is sent in this order:
     # ["elbow_joint", "shoulder_lift_joint", "shoulder_pan_joint", "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
     print([current_joints[2], current_joints[1], current_joints[0], current_joints[3], current_joints[4], current_joints[5]])
+
+    listener = tf.TransformListener()
+    listener.waitForTransform('/base', '/tool0_controller', rospy.Time(), rospy.Duration(4.0))
+    (trans, rot) = listener.lookupTransform('/base', '/tool0_controller', rospy.Time(0))
+    print("\ntrans")
+    print(trans)
+    print("\nrot")
+    print(rot)

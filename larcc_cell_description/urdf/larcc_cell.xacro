@@ -49,7 +49,7 @@
 
 <!--    Place d45i camera-->
 
-<!--    <xacro:realsense2_camera parent="base_link" use_nominal_extrinsics="true">-->
+<!--    <xacro:realsense2_camera parent="base" use_nominal_extrinsics="true">-->
 <!--        <origin xyz="0.797 -0.803 0.432" rpy="3.135 2.462 -1.577"/>-->
 <!--    </xacro:realsense2_camera>-->
 
@@ -109,6 +109,15 @@
         <child link="robotiq_arg2f_base_link"/>
         <origin xyz="0 0 0.011" rpy="0 0 0"/>
     </joint>
+
+    <link name="end_effector"/>
+
+    <joint name="gripper-end_effector" type="fixed">
+        <parent link="robotiq_arg2f_base_link"/>
+        <child link="end_effector"/>
+        <origin xyz="0.0007295637845960989 0.0009607961805311316 0.21573113136562894" rpy="0 -0.001546440756787199 -1.572652377645297"/>
+    </joint>
+
 
 <!--    Place base table-->
 

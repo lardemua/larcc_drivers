@@ -77,6 +77,8 @@ class UR10eArm(object):
         ## This interface can be used to plan and execute motions:
         group_name = "manipulator"
         move_group = moveit_commander.MoveGroupCommander(group_name)
+        move_group.set_end_effector_link("end_effector")
+
 
         ## Create a `DisplayTrajectory`_ ROS publisher which is used to display
         ## trajectories in Rviz:
@@ -164,7 +166,7 @@ class UR10eArm(object):
 
     def go_to_pose_goal(self, trans_x, trans_y, trans_z, q1, q2, q3, q4, vel, a):
         """
-        Go to a certain pose goal described by a quaternion tf from 'world' to the end-effector 'tool0'
+        Go to a certain pose goal described by a quaternion tf from 'world' to the end-effector 'end_effector'
         """
         move_group = self.move_group
 
