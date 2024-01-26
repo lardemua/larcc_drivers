@@ -25,8 +25,8 @@ if __name__ == '__main__':
     print([current_joints[2], current_joints[1], current_joints[0], current_joints[3], current_joints[4], current_joints[5]])
 
     listener = tf.TransformListener()
-    listener.waitForTransform('/base', '/tool0_controller', rospy.Time(), rospy.Duration(4.0))
-    (trans, rot) = listener.lookupTransform('/base', '/tool0_controller', rospy.Time(0))
+    listener.waitForTransform('/world', '/end_effector', rospy.Time(), rospy.Duration(4.0))
+    (trans, rot) = listener.lookupTransform('/world', '/end_effector', rospy.Time(0))
     print("\ntrans")
     print(trans)
     print("\nrot")
