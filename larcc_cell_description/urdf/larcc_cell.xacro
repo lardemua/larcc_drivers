@@ -25,6 +25,7 @@
 
     <xacro:include filename="$(find ur_description)/urdf/inc/ur10e_macro.xacro"/>
     <xacro:include filename="$(find realsense2_description)/urdf/test_d435i_camera.urdf.xacro" />
+    <xacro:include filename="$(find larcc_cell_description)/urdf/astra.urdf.xacro"/>
     <xacro:include filename="$(find gripper)/urdf/robotiq_arg2f_140_model_macro.xacro" />
     <xacro:include filename="$(find larcc_cell_description)/urdf/table.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/gantry.macro.xacro"/>
@@ -51,6 +52,12 @@
     <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">
         <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>
     </xacro:realsense2_camera>
+
+    <!-- Astra below was not well calibrated -->
+    <xacro:sensor_astra prefix="camera_4" parent="world" scale="1 1 1">
+        <origin xyz="0.8891137 1.18206377 2.31900029"
+                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>
+    </xacro:sensor_astra>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
