@@ -61,23 +61,12 @@ Installation > Fieldbus > EtherNet/IP > Disable
 ![tp5](docs/tp_ethernet_fieldbus.png)
 
 ### On computer
-First, it is required to have MoveIt installed in your system:
+First, it is required to have MoveIt and other packages installed in your system:
 
 ```
-sudo apt install ros-noetic-moveit
+sudo apt install ros-noetic-moveit ros-noetic-industrial-robot-status-interface ros-noetic-scaled-controllers ros-noetic-pass-through-controllers ros-noetic-ur-client-library ros-noetic-velocity-controllers ros-noetic-force-torque-sensor-controller socat
 ```
 
-Besides MoveIt, there are other packages that need to be installed:
-
-```
-sudo apt-get install ros-noetic-industrial-robot-status-interface
-sudo apt-get install ros-noetic-scaled-controllers
-sudo apt-get install ros-noetic-pass-through-controllers
-sudo apt-get install ros-noetic-ur-client-library
-sudo apt-get install ros-noetic-velocity-controllers
-sudo apt-get install ros-noetic-force-torque-sensor-controller
-sudo apt-get install socat
-```
 (**Note:** At this moment, if you do not have a catkin workspace, you should now create one, by following the steps described [here](http://wiki.ros.org/catkin/Tutorials/create_a_workspace))
 
 After all these installations, on your catkin workspace you need to clone this repository:
