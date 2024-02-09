@@ -22,6 +22,10 @@ This repository was built to work with:
 2. [On computer](#on-computer)
 
 ### On UR10e controller 
+
+<details>
+<summary>Click for details...</summary>
+
 For working on a real robot you need to install the [externalcontrol-1.0.5.urcap](https://github.com/lardemua/larcc_drivers/blob/master/resources/externalcontrol-1.0.5.urcap) which can be found inside the resources folder of this repository.
 
 Using a USB pen drive, follow:
@@ -60,7 +64,14 @@ Installation > Fieldbus > EtherNet/IP > Disable
 
 ![tp5](docs/tp_ethernet_fieldbus.png)
 
+</details>
+
+
 ### On computer
+
+<details>
+<summary>Click for details...</summary>
+
 First, it is required to have MoveIt and other packages installed in your system:
 
 ```
@@ -102,9 +113,10 @@ After you connect the cable, you need to configure the IPv4 like this:
 
 ![tp6](docs/ip.jpeg)
 
-<!--
 
 TODO: Verify if everything below is correct.
+
+</details>
 
 ## Controlling UR10e through MoveIt with RViz
 Just need to follow these next 4 steps to remotely control the real UR10e robot, connected via the Ethernet cable to your computer.
