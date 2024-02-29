@@ -53,11 +53,11 @@
         <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>
     </xacro:realsense2_camera>
 
-    <!-- Astra below was not well calibrated -->
-    <xacro:sensor_astra prefix="camera_4" parent="world" scale="1 1 1">
-        <origin xyz="0.8891137 1.18206377 2.31900029"
-                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>
-    </xacro:sensor_astra>
+<!--    &lt;!&ndash; Astra below was not well calibrated &ndash;&gt;-->
+<!--    <xacro:sensor_astra prefix="camera_4" parent="world" scale="1 1 1">-->
+<!--        <origin xyz="0.8891137 1.18206377 2.31900029"-->
+<!--                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>-->
+<!--    </xacro:sensor_astra>-->
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
