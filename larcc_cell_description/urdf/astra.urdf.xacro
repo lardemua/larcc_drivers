@@ -39,20 +39,6 @@
       <selfCollide>false</selfCollide>
     </gazebo>
 
-    <joint name="${prefix}_rgb_joint" type="fixed">
-      <origin xyz="0 -0.045 0" rpy="0 0 0" />
-      <parent link="${prefix}_link"/>
-      <child link="${prefix}_rgb_frame" />
-    </joint>
-    <link name="${prefix}_rgb_frame"/>
-
-    <joint name="${prefix}_rgb_optical_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
-      <parent link="${prefix}_rgb_frame" />
-      <child link="${prefix}_rgb_optical_frame" />
-    </joint>
-    <link name="${prefix}_rgb_optical_frame"/>
-
     <joint name="${prefix}_depth_joint" type="fixed">
         <origin xyz="0 -0.02 0" rpy="0 0 0" />
         <parent link="${prefix}_link" />
@@ -88,13 +74,13 @@
                   <cameraName>${prefix}</cameraName>
                   <alwaysOn>true</alwaysOn>
                   <updateRate>0</updateRate>
-                  <imageTopicName>rgb/image_raw</imageTopicName>
+                  <imageTopicName>color/image_raw</imageTopicName>
                   <depthImageTopicName>depth/image_raw</depthImageTopicName>
                   <pointCloudTopicName>depth/points</pointCloudTopicName>
-                  <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+                  <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
                   <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
 <!--                  <frameName>${prefix}_depth_optical_frame</frameName>-->
-                  <frameName>${prefix}_rgb_optical_frame</frameName>
+                  <frameName>${prefix}_color_optical_frame</frameName>
 <!--                  <frameName>${prefix}_link</frameName>-->
                   <baseline>0.1</baseline>
                   <distortion_k1>0.0</distortion_k1>

@@ -49,8 +49,10 @@
     </joint>
 
 <!--    Place d45i camera-->
+<!--    Note: should add Pi value (3.14159) to second rotation value (p)-->
     <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">
-        <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>
+<!--        <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>-->
+        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>
     </xacro:realsense2_camera>
 
 <!--    &lt;!&ndash; Astra below was not well calibrated &ndash;&gt;-->

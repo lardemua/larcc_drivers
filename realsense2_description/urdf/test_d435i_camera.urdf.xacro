@@ -5,7 +5,7 @@
 
   <xacro:macro name="realsense2_camera" params="parent *origin name:=camera use_nominal_extrinsics">
 <!--    <xacro:sensor_d435i parent="${parent}" origin="origin" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">-->
-    <xacro:sensor_d435i parent="${parent}" origin="origin" use_nominal_extrinsics="${use_nominal_extrinsics}">
+    <xacro:sensor_d435i parent="${parent}" name="${name}" origin="origin" use_nominal_extrinsics="${use_nominal_extrinsics}">
 <!--      <origin xyz="0 0 0" rpy="0 0 0"/>-->
     </xacro:sensor_d435i>
   </xacro:macro>
