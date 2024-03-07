@@ -121,8 +121,7 @@ class UR10eArm(object):
         move_arm_to_joints_state_service = rospy.Service("move_arm_to_joints_state", MoveArmToJointsState, self.move_arm_to_joints_state)
         stop_arm_service = rospy.Service("stop_arm", StopArm, self.stop_arm)
 
-    # def go_to_joint_state(self, joint1, joint2, joint3, joint4, joint5, joint6, vel, a):
-    def go_to_joint_state(self, req):
+    def move_arm_to_joints_state(self, req):
         """
         Go to a certain pose goal described by the joints state
         """
@@ -174,7 +173,7 @@ class UR10eArm(object):
         else:
             return MoveArmToJointsStateResponse('Arm is not at requested joints state goal.')
 
-    def go_to_pose_goal(self, req):
+    def move_arm_to_pose_goal(self, req):
         """
         Go to a certain pose goal described by a quaternion tf from 'world' to the end-effector 'tool0'
         """
