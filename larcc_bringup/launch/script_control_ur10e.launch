@@ -9,5 +9,7 @@
     </include>
 
     <node pkg="gripper_action_server" type="gripper_action_server_node.py" name="gripper_action_server"/>
-<!--     <node pkg="arm" type="arm_controller.py" name="arm_controller"/> -->
+
+    <!-- While actions are not available for quaternions poses, the node below can be used for doing movements using services -->
+    <node pkg="arm" type="arm_controller.py" name="arm_controller"/>
 </launch>
