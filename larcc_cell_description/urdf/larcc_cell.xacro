@@ -50,28 +50,34 @@
 
 <!--    Place d45i camera-->
 <!--    Note: should add Pi value (3.14159) to second rotation value (p)-->
-    <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">
-<!--        <origin xyz="-0.161 0.222 1.210" rpy="3.210079633 2.720592654 2.809"/>-->
-        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>
-    </xacro:realsense2_camera>
+<!--    <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">-->
+<!--        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>-->
+<!--    </xacro:realsense2_camera>-->
 
-    <!-- Astra below was not well calibrated -->
-    <xacro:sensor_astra prefix="camera_4" parent="world">
+    <!-- Astra behind before calibration -->
+    <xacro:sensor_astra prefix="camera_behind" parent="world">
         <origin xyz="0.8891137 1.18206377 2.31900029"
-                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>
+                rpy="-0.10196342984026999 2.08536416 -1.7990340284545345"/>
+        <!--                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>-->
+    </xacro:sensor_astra>
+
+    <!-- Astra top before calibration -->
+    <xacro:sensor_astra prefix="camera_top" parent="world">
+        <origin xyz="0.1 0 2.41900029"
+                rpy="0 ${M_PI} 0"/>
     </xacro:sensor_astra>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
         <child link="FT_sensor_base"/>
-        <origin xyz="0 0 0.003" rpy="0 0 1.5708"/>
+        <origin xyz="0 0 0.007" rpy="0 0 ${M_PI/2}"/>
     </joint>
 
 
     <link name="FT_sensor_base">
         <visual>
           <geometry>
-            <cylinder length="0.006" radius="0.05"/>
+            <cylinder length="0.014" radius="0.05"/>
           </geometry>
           <material name="metalic_blue">
             <color rgba="0.0118 0.5176 0.6706 1.0"/>
@@ -79,7 +85,7 @@
         </visual>
         <collision>
           <geometry>
-            <cylinder length="0.006" radius="0.05"/>
+            <cylinder length="0.014" radius="0.05"/>
           </geometry>
         </collision>
     </link>
@@ -88,13 +94,13 @@
     <joint name="FT_sensor_base-FT_sensor" type="fixed">
         <parent link="FT_sensor_base"/>
         <child link="FT_sensor"/>
-        <origin xyz="0 0 0.014" rpy="0 0 0"/>
+        <origin xyz="0 0 0.0215" rpy="0 0 0"/>
     </joint>
 
     <link name="FT_sensor">
         <visual>
           <geometry>
-            <cylinder length="0.022" radius="0.04"/>
+            <cylinder length="0.029" radius="0.04"/>
           </geometry>
           <material name="metalic_blue">
             <color rgba="0.0118 0.5176 0.6706 1.0"/>
@@ -102,7 +108,7 @@
         </visual>
         <collision>
           <geometry>
-            <cylinder length="0.022" radius="0.04"/>
+            <cylinder length="0.029" radius="0.04"/>
           </geometry>
         </collision>
     </link>
@@ -115,7 +121,7 @@
     <joint name="gripper_joint" type="fixed">
         <parent link="FT_sensor"/>
         <child link="robotiq_arg2f_base_link"/>
-        <origin xyz="0 0 0.011" rpy="0 0 0"/>
+        <origin xyz="0 0 0.0215" rpy="0 0 0"/>
     </joint>
 
     <link name="end_effector"/>
@@ -123,7 +129,7 @@
     <joint name="gripper-end_effector" type="fixed">
         <parent link="robotiq_arg2f_base_link"/>
         <child link="end_effector"/>
-        <origin xyz="0.0007295637845960989 0.0009607961805311316 0.21573113136562894" rpy="0 -0.001546440756787199 -1.572652377645297"/>
+        <origin xyz="0 0 0.21573113136562894" rpy="0 0 ${-M_PI/2}"/>
     </joint>
 
 
