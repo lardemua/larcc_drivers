@@ -67,6 +67,13 @@
                 rpy="0 ${M_PI} 0"/>
     </xacro:sensor_astra>
 
+<!--    &lt;!&ndash; Astra top before calibration &ndash;&gt;-->
+<!--    <xacro:sensor_astra prefix="camera_gripper" parent="end_effector">-->
+<!--        <origin xyz="-0.12 -0.05 -0.1"-->
+<!--                rpy="${-M_PI/2} ${M_PI/8} 0"/>-->
+<!--    </xacro:sensor_astra>-->
+
+
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
         <child link="FT_sensor_base"/>
