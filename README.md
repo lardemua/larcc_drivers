@@ -18,8 +18,6 @@ This repository was built to work with:
 * ROS Noetic
 
 ## Installation
-1. [On UR10e controller](#on-ur10e-controller)
-2. [On computer](#on-computer)
 
 ### On UR10e controller 
 
@@ -66,11 +64,7 @@ Installation > Fieldbus > EtherNet/IP > Disable
 
 </details>
 
-
 ### On computer
-
-<details>
-<summary>Click for details...</summary>
 
 First, it is required to have MoveIt and other packages installed in your system:
 
@@ -107,16 +101,34 @@ cd ~/catkin_ws
 catkin_make
 ```
 
-
 Finally, to establish the communication between the robot and the computer, it is required to **connect an Ethernet cable from the UR10e controller to the computer**.
 After you connect the cable, you need to configure the IPv4 like this:
 
 ![tp6](docs/ip.jpeg)
 
+### Set up camera dependencies
 
-TODO: Verify if everything below is correct.
+1. For the astra_camera package, follow the instructions in the [ros_astra_camera repository](https://github.com/orbbec/ros_astra_camera).
 
-</details>
+2. For the usb_cam package, install the following dependencies:
+
+   ```
+   sudo apt install libv4l-dev v4l-utils
+   ```
+   
+   Then close the [usb_cam repository](https://github.com/ros-drivers/usb_cam) and switch to the 'develop' branch which corresponds to ROS noetic:
+   ```
+   cd ~/catkin_ws/src
+   git clone https://github.com/ros-drivers/usb_cam.git
+   cd usb_cam & git checkout develop
+   ```
+   
+   Finally, compile your catkin workspace.
+
+   ```
+   cd ~/catkin_ws
+   catkin_make
+   ```
 
 ## Controlling UR10e through MoveIt with RViz
 Just need to follow these next 4 steps to remotely control the real UR10e robot, connected via the Ethernet cable to your computer.
@@ -144,7 +156,6 @@ MoveIt will plan the trajetory.
 
 [//]: # (![tp9]&#40;docs/UR10e_moving_moveit.gif&#41;)
 ![tp9](docs/ur10e_external_control.gif)
-
 
 ## Real-time UR10e following a tracked object
 By using ViSP RGB-D object tracking (see [this repository](https://github.com/afonsocastro/generic-rgbd)) and MoveIt to remotely control the UR10e,
@@ -184,5 +195,3 @@ Notes:
 ## Real-time UR10e following & picking a tracked object
 
 ![arm_and_gripper_control](docs/Arm_and_Gripper_Control.gif)
-
--->
