@@ -1,0 +1,48 @@
+<launch>
+    <arg name="camera1_prefix" default="top"/>
+    <arg name="camera2_prefix" default="behind"/>
+    <!-- <arg name="camera3_prefix" default="gripper"/> -->
+    <arg name="camera1_serial_number" default="19052130216"/>
+    <arg name="camera2_serial_number" default="20101230094"/>
+    <arg name="num_orbbec_cameras" default="2"/>
+
+    <node name="usb_cam_$(arg camera1_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen" >
+      <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera1_prefix).yml"/>
+    </node>
+
+    <node name="usb_cam_$(arg camera2_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen" >
+      <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera2_prefix).yml"/>
+    </node>
+
+    <!-- <node name="usb_cam_$(arg camera3_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen" >
+      <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera3_prefix).yml"/>
+    </node> -->
+
+    <include file="$(find astra_camera)/launch/astra_pro.launch">
+        <arg name="camera_name" value="orbbec_$(arg camera1_prefix)"/>
+        <arg name="enable_point_cloud" value="false"/>
+        <arg name="publish_tf" default="false"/>
+        <arg name="depth_width" default="640"/>
+        <arg name="depth_height" default="480"/>
+        <arg name="depth_fps" default="30"/>
+        <arg name="enable_color" value="false"/>
+        <arg name="enable_ir" default="false"/>
+        <arg name="use_uvc_camera" value="false"/>
+        <arg name="serial_number" value="$(arg camera1_serial_number)"/>
+        <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
+    </include>
+
+    <include file="$(find astra_camera)/launch/astra_pro.launch">
+        <arg name="camera_name" value="orbbec_$(arg camera2_prefix)"/>
+        <arg name="enable_point_cloud" value="false"/>
+        <arg name="publish_tf" default="false"/>
+        <arg name="depth_width" default="640"/>
+        <arg name="depth_height" default="480"/>
+        <arg name="depth_fps" default="30"/>
+        <arg name="enable_color" value="false"/>
+        <arg name="enable_ir" default="false"/>
+        <arg name="use_uvc_camera" value="false"/>
+        <arg name="serial_number" value="$(arg camera2_serial_number)"/>
+        <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
+    </include>
+</launch>

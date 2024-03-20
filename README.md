@@ -116,11 +116,11 @@ After you connect the cable, you need to configure the IPv4 like this:
    sudo apt install libv4l-dev v4l-utils
    ```
    
-   Then clone the [usb_cam repository](https://github.com/ros-drivers/usb_cam) and switch to the 'develop' branch which corresponds to ROS noetic:
+   Then clone the [usb_cam repository](https://github.com/lardemua/usb_cam):
+   
    ```
    cd ~/catkin_ws/src
-   git clone https://github.com/ros-drivers/usb_cam.git
-   cd usb_cam & git checkout develop
+   git clone https://github.com/lardemua/usb_cam.git
    ```
    
    Finally, compile your catkin workspace.

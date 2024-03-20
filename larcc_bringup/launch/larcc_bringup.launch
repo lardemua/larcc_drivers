@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find larcc_bringup)/launch/ur10e_bringup.launch" />
+
+    <include file="$(find larcc_bringup)/launch/cameras.launch" />
+</launch>
