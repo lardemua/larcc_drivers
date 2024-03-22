@@ -64,7 +64,7 @@
     <!-- Astra top before calibration -->
     <xacro:sensor_astra prefix="camera_top" parent="world">
         <origin xyz="0.1 0 2.41900029"
-                rpy="0 ${M_PI} 0"/>
+                rpy="0 0 0"/>
     </xacro:sensor_astra>
 
 <!--    &lt;!&ndash; Astra top before calibration &ndash;&gt;-->
