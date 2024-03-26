@@ -2,20 +2,20 @@
 <!-- Copy and adapt as needed -->
 
 <launch>
-    <arg name="camera1_prefix" default="top"/>
-    <arg name="camera2_prefix" default="behind"/>
+    <arg name="camera1_prefix" default="behind"/>
+    <arg name="camera2_prefix" default="top"/>
     <!-- <arg name="camera3_prefix" default="gripper"/> -->
-    <arg name="camera1_serial_number" default="19052130216"/>
-    <arg name="camera2_serial_number" default="20101230094"/>
+    <arg name="camera1_serial_number" default="20101230094"/>
+    <arg name="camera2_serial_number" default="19052130216"/>
     <arg name="num_orbbec_cameras" default="2"/>
 
-    <!-- usb_cam node to publish rgb images from top camera -->
-    <node name="usb_cam_$(arg camera1_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <!-- usb_cam node to publish rgb images from behind camera -->
+    <node name="color" ns="camera_$(arg camera1_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen">
       <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera1_prefix).yml"/>
     </node>
 
-    <!-- usb_cam node to publish rgb images from behind camera -->
-    <node name="usb_cam_$(arg camera2_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <!-- usb_cam node to publish rgb images from top camera -->
+    <node name="color" ns="camera_$(arg camera2_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen">
       <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera2_prefix).yml"/>
     </node>
 
@@ -24,9 +24,9 @@
       <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera3_prefix).yml"/>
     </node> -->
 
-    <!-- astra_camera node to publish depth images from top camera -->
+    <!-- astra_camera node to publish depth images from behind camera -->
     <include file="$(find astra_camera)/launch/astra_pro.launch">
-        <arg name="camera_name" value="orbbec_$(arg camera1_prefix)"/>
+        <arg name="camera_name" value="camera_$(arg camera1_prefix)"/>
         <arg name="enable_point_cloud" value="false"/>
         <arg name="publish_tf" default="false"/>
         <arg name="depth_width" default="640"/>
@@ -39,9 +39,9 @@
         <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
     </include>
 
-    <!-- astra_camera node to publish depth images from behind camera -->
+    <!-- astra_camera node to publish depth images from top camera -->
     <include file="$(find astra_camera)/launch/astra_pro.launch">
-        <arg name="camera_name" value="orbbec_$(arg camera2_prefix)"/>
+        <arg name="camera_name" value="camera_$(arg camera2_prefix)"/>
         <arg name="enable_point_cloud" value="false"/>
         <arg name="publish_tf" default="false"/>
         <arg name="depth_width" default="640"/>
