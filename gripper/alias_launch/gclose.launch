@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node pkg="gripper_action_server" type="gripper_action_server_node.py" name="gripper_action_server"/>
+    <node pkg="gripper" type="gripper_close.py" name="gripper_client"/>
+</launch>

@@ -51,20 +51,18 @@
 <!--    Place d45i camera-->
 <!--    Note: should add Pi value (3.14159) to second rotation value (p)-->
 <!--    <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">-->
-<!--        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>-->
+<!--&lt;!&ndash;        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>&ndash;&gt;-->
+<!--        <origin xyz="-0.507 0.222 1.312" rpy="0.5640801120207652 0.03410154422820706 -1.8394088703112872"/>-->
 <!--    </xacro:realsense2_camera>-->
 
-    <!-- Astra behind before calibration -->
     <xacro:sensor_astra prefix="camera_behind" parent="world">
-        <origin xyz="0.8891137 1.18206377 2.31900029"
-                rpy="-0.10196342984026999 2.08536416 -1.7990340284545345"/>
-        <!--                rpy="-0.10196342984026999 0.5145692159638564 -1.7990340284545345"/>-->
+        <origin xyz="0.8481721310949765 1.224365708088931 2.3511875266550333"
+                rpy="-0.19718554582052114 0.5342533504487207 -1.8821968275695813"/>
     </xacro:sensor_astra>
 
-    <!-- Astra top before calibration -->
     <xacro:sensor_astra prefix="camera_top" parent="world">
-        <origin xyz="0.1 0 2.41900029"
-                rpy="0 0 0"/>
+        <origin xyz="0.09511408182797733 0.14905972847160784 2.4330682231422602"
+                rpy="-1.9962039976135075 1.491251777066553 -2.0400319820116386"/>
     </xacro:sensor_astra>
 
 <!--    &lt;!&ndash; Astra top before calibration &ndash;&gt;-->
@@ -72,7 +70,6 @@
 <!--        <origin xyz="-0.12 -0.05 -0.1"-->
 <!--                rpy="${-M_PI/2} ${M_PI/8} 0"/>-->
 <!--    </xacro:sensor_astra>-->
-
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>

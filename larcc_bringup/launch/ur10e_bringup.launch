@@ -12,4 +12,6 @@
 
     <!-- While actions are not available for quaternions poses, the node below can be used for doing movements using services -->
     <node pkg="arm" type="UR10eArm.py" name="ur10e_arm"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_bringup)/rviz/ur10e_gantry_tables.rviz" required="true"/>
 </launch>
