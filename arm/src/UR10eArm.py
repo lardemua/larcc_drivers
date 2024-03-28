@@ -156,8 +156,9 @@ class UR10eArm(object):
 
         # The go command can be called with joint values, poses, or without any
         # parameters if you have already set the pose or joint target for the group
-        success = False
-        while not success and not self.stopping:
+        #success = False
+        #while not success and not self.stopping:
+        if not self.stopping:
             success = move_group.go(joint_goal, wait=True)
 
         # Calling ``stop()`` ensures that there is no residual movement
@@ -203,8 +204,11 @@ class UR10eArm(object):
 
         ## Now, we call the planner to compute the plan and execute it.
         # `go()` returns a boolean indicating whether the planning and execution was successful.
-        success = False
-        while not success and not self.stopping:
+        # success = False
+        # while not success and not self.stopping:
+        #     success = move_group.go(pose_goal, wait=True)
+        
+        if not self.stopping:
             success = move_group.go(pose_goal, wait=True)
 
         # Calling `stop()` ensures that there is no residual movement
