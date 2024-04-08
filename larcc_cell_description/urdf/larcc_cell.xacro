@@ -15,7 +15,7 @@
     <xacro:property name="gantry_foot_height" value="0.065"/>
 <!--    <xacro:property name="gantry_height" value="2.353"/>-->
     <xacro:property name="gantry_width" value="4"/>
-    <xacro:property name="gantry_length" value="2.8"/>
+    <xacro:property name="gantry_length" value="2.7975"/>
     <xacro:property name="gantry_thickness" value="0"/>
     <xacro:property name="gantry_leg_radius" value="0.09"/>
 
