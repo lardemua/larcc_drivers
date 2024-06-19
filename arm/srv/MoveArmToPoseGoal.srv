@@ -1,5 +1,4 @@
-float32[] translation
-float32[] quaternions
+geometry_msgs/Pose goal
 float32 velocity
 float32 acceleration
 ---
