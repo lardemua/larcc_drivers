@@ -226,7 +226,7 @@
         <!-- Define the four legs -->
         <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
         <xacro:gantry_leg_macro name="leg1" parent="${name}" height="${height}" foot_height="${foot_height}" leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${-width/2-leg_radius} ${length/2} ${foot_height}" rpy="0 0 0"/>
+            <origin xyz="${-(width/2)-leg_radius} ${length/2} ${foot_height}" rpy="0 0 0"/>
         </xacro:gantry_leg_macro>
 
         <xacro:gantry_leg_macro name="leg2" parent="${name}" height="${height}" foot_height="${foot_height}" leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
@@ -234,11 +234,11 @@
         </xacro:gantry_leg_macro>
 
         <xacro:gantry_leg_macro name="leg3" parent="${name}" height="${height}" foot_height="${foot_height}" leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${width/2} ${-length/2-leg_radius} ${foot_height}" rpy="0 0 0"/>
+            <origin xyz="${width/2} ${-(length/2)-leg_radius} ${foot_height}" rpy="0 0 0"/>
         </xacro:gantry_leg_macro>
 
         <xacro:gantry_leg_macro name="leg4" parent="${name}" height="${height}" foot_height="${foot_height}" leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${-width/2-leg_radius} ${-length/2-leg_radius} ${foot_height}" rpy="0 0 0"/>
+            <origin xyz="${-(width/2)-leg_radius} ${-(length/2)-leg_radius} ${foot_height}" rpy="0 0 0"/>
         </xacro:gantry_leg_macro>
 
 
@@ -254,34 +254,25 @@
         </xacro:gantry_big_beam_macro>
 
 
-
-
-
-
         <xacro:gantry_small_beam_macro name="smallbeam1" parent="bigbeam1_gantry" height="${height}" foot_height="${foot_height}"  leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${(5-width)/2+0.09} ${-((-3.8+length+0.09)/2+3.8)} 0.09" rpy="0 0 0"/>
+            <origin xyz="${0.32+leg_radius} ${-(length+leg_radius+0.37)} ${leg_radius}" rpy="0 0 0"/>
         </xacro:gantry_small_beam_macro>
 
         <xacro:gantry_small_beam_macro name="smallbeam2" parent="bigbeam1_gantry" height="${height}" foot_height="${foot_height}"  leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${5-(5-width)/2} ${-((-3.8+length+0.09)/2+3.8)} 0.09" rpy="0 0 0"/>
+            <origin xyz="${0.32+leg_radius+leg_radius+width} ${-(length+leg_radius+0.37)} ${leg_radius}" rpy="0 0 0"/>
         </xacro:gantry_small_beam_macro>
 
 
-
-
-
-
-
         <xacro:gantry_retangular_beam_macro name="rectangularbeam1" parent="bigbeam1_gantry" height="${height}" foot_height="${foot_height}"  leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${(5-width)/2+width/4-0.045} -2.8 0" rpy="0 ${M_PI/2} 0"/>
+            <origin xyz="${0.32+leg_radius+0.98+0.045} ${-(length+leg_radius+0.12)} 0" rpy="0 ${M_PI/2} 0"/>
         </xacro:gantry_retangular_beam_macro>
 
         <xacro:gantry_retangular_beam_macro name="rectangularbeam2" parent="bigbeam1_gantry" height="${height}" foot_height="${foot_height}"  leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${(5-width)/2+width/2-0.045} -2.8 0" rpy="0 ${M_PI/2} 0"/>
+            <origin xyz="${0.32+leg_radius+0.98+0.045+0.945+0.045} ${-(length+leg_radius+0.12)} 0" rpy="0 ${M_PI/2} 0"/>
         </xacro:gantry_retangular_beam_macro>
 
         <xacro:gantry_retangular_beam_macro name="rectangularbeam3" parent="bigbeam1_gantry" height="${height}" foot_height="${foot_height}"  leg_radius="${leg_radius}" gantry_thickness="${gantry_thickness}">
-            <origin xyz="${(5-width)/2+3*width/4-0.045} -2.8 0" rpy="0 ${M_PI/2} 0"/>
+            <origin xyz="${0.32+leg_radius+0.98+0.045+0.945+0.045+0.955+0.045} ${-(length+leg_radius+0.12)} 0" rpy="0 ${M_PI/2} 0"/>
         </xacro:gantry_retangular_beam_macro>
 
     </xacro:macro>
