@@ -158,6 +158,7 @@ class UR10eArm(object):
         # parameters if you have already set the pose or joint target for the group
         #success = False
         #while not success and not self.stopping:
+
         if not self.stopping:
             success = move_group.go(joint_goal, wait=True)
 
@@ -207,9 +208,29 @@ class UR10eArm(object):
         # success = False
         # while not success and not self.stopping:
         #     success = move_group.go(pose_goal, wait=True)
-        
+
         if not self.stopping:
-            success = move_group.go(pose_goal, wait=True)
+            start_state = self.robot.get_current_state()
+            move_group.set_start_state(start_state)
+            move_group.set_pose_target(pose_goal)
+            _, plan, __, ___ = move_group.plan()
+            rospy.logerr(plan)
+            rospy.logerr(start_state)
+            #rospy.logerr(type(plan))
+            #traj = plan.get_robot_trajectory_msg()
+            #plan.set_robot_trajectory(traj)
+            #plan.joint_trajectory.points[0].positions = self.robot.get_current_state().joint_state.position
+            #plan.joint_trajectory.points.pop(0)
+            
+
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            plan.joint_trajectory.points.pop(0)
+            success = move_group.execute(plan, wait=False)
 
         # Calling `stop()` ensures that there is no residual movement
         move_group.stop()
