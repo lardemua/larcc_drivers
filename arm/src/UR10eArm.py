@@ -69,7 +69,7 @@ class UR10eArm(object):
             plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
 
             # execute the trajectory
-            success = self.move_group.execute(plan, wait=False)
+            success = self.move_group.execute(plan, wait=req.wait)
 
             if success:
                 return MoveArmToJointsStateResponse('Arm is moving to the requested pose goal.')
@@ -103,7 +103,7 @@ class UR10eArm(object):
             plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
 
             # execute the trajectory
-            success = self.move_group.execute(plan, wait=False)
+            success = self.move_group.execute(plan, wait=req.wait)
 
             if success:
                 return MoveArmToPoseGoalResponse('Arm is moving to the requested pose goal.')
