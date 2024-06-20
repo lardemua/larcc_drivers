@@ -33,6 +33,8 @@ class UR10eArm(object):
         group_name = "manipulator"
         self.move_group = moveit_commander.MoveGroupCommander(group_name)
 
+        self.move_group.set_planning_time(0.3)
+
         # Initialize services
         move_arm_to_pose_goal_service = rospy.Service("move_arm_to_pose_goal", MoveArmToPoseGoal, self.move_arm_to_pose_goal)
         move_arm_to_joints_state_service = rospy.Service("move_arm_to_joints_state", MoveArmToJointsState, self.move_arm_to_joints_state)
