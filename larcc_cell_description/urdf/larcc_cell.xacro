@@ -155,4 +155,28 @@
         <origin xyz="${(0.9+0.7)/2} 0 0" rpy="0 0 0"/>
     </xacro:table_macro>
 
+     <!-- Collision box representing the ceiling -->
+    <link name="virtual_ceiling">
+      <collision>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+        <geometry>
+          <box size="5 5 0.1"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+        <geometry>
+          <box size="5 5 0.1"/>
+        </geometry>
+        <material name="red">
+          <color rgba="0.5 0 0 0.5"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="fixed_ceiling_joint" type="fixed">
+      <parent link="world"/> <!-- Replace with your reference link -->
+      <child link="virtual_ceiling"/>
+      <origin xyz="0 0 1.8" rpy="0 0 0"/>
+    </joint>
+
 </robot>
