@@ -100,7 +100,11 @@ class UR10eArm(object):
         # If the plan was successful, execute it
         if success:
             # filter out the first points of the trajectory to avoid the robot to move to the initial position
-            plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
+            if len([p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]) > 0:
+                plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
+            else:
+                last_point = sorted(plan.joint_trajectory.points, key=lambda x: x.time_from_start.to_sec())[-1]
+                plan.joint_trajectory.points = [last_point]
 
             # execute the trajectory
             success = self.move_group.execute(plan, wait=req.wait)
