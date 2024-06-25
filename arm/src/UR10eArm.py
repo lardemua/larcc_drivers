@@ -33,12 +33,12 @@ class UR10eArm(object):
         group_name = "manipulator"
         self.move_group = moveit_commander.MoveGroupCommander(group_name)
 
-        self.move_group.set_planning_time(0.3)
+        self.move_group.set_planning_time(0.5)
 
         # Initialize services
-        move_arm_to_pose_goal_service = rospy.Service("move_arm_to_pose_goal", MoveArmToPoseGoal, self.move_arm_to_pose_goal)
-        move_arm_to_joints_state_service = rospy.Service("move_arm_to_joints_state", MoveArmToJointsState, self.move_arm_to_joints_state)
-        stop_arm_service = rospy.Service("stop_arm", StopArm, self.stop_arm)
+        self.move_arm_to_pose_goal_service = rospy.Service("move_arm_to_pose_goal", MoveArmToPoseGoal, self.move_arm_to_pose_goal)
+        self.move_arm_to_joints_state_service = rospy.Service("move_arm_to_joints_state", MoveArmToJointsState, self.move_arm_to_joints_state)
+        self.stop_arm_service = rospy.Service("stop_arm", StopArm, self.stop_arm)
 
     def move_arm_to_joints_state(self, req):
         """
@@ -68,7 +68,11 @@ class UR10eArm(object):
 
         if success:
             # filter out the first points of the trajectory to avoid the robot to move to the initial position
-            plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
+            if len([p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]) > 0:
+                plan.joint_trajectory.points = [p for p in plan.joint_trajectory.points if p.time_from_start.to_sec() > 1.0]
+            else:
+                last_point = sorted(plan.joint_trajectory.points, key=lambda x: x.time_from_start.to_sec())[-1]
+                plan.joint_trajectory.points = [last_point]
 
             # execute the trajectory
             success = self.move_group.execute(plan, wait=req.wait)
