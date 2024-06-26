@@ -130,6 +130,16 @@ After you connect the cable, you need to configure the IPv4 like this:
    catkin_make
    ```
 
+### With Docker
+
+```
+docker build -t lardemua/larcc-distrobox .
+```
+
+```
+SHELL=/bin/bash distrobox create --image lardemua/larcc-distrobox --name larcc-distrobox --additional-flags "--gpus all" --home $HOME/larcc-distrobox
+```
+
 ## Controlling UR10e through MoveIt with RViz
 Just need to follow these next 4 steps to remotely control the real UR10e robot, connected via the Ethernet cable to your computer.
 
