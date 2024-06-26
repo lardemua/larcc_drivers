@@ -1,8 +1,13 @@
 # larcc_drivers
 
+This repository was built to work with:
+* UR10e manipulator (Universal Robot 10 e-series)
+* Ubuntu 20.04.3 LTS or other Linux distros using Docker
+* ROS Noetic
+
 ## Table of Contents
 
-1. [Configuration](#configuration)
+1. [UR10e Controller Configuration](#ur10e-controller-configuration)
 2. [Installation](#installation)
 3. [Controlling UR10e through MoveIt with RViz](#controlling-ur10e-through-moveit-with-rviz)
 4. [Real-time UR10e following a tracked object](#real-time-ur10e-following-a-tracked-object)
@@ -10,16 +15,9 @@
 6. [Real-time UR10e following & picking a tracked object](#real-time-ur10e-following-&-picking-a-tracked-object)
 
 
-## Configuration
+## UR10e Controller Configuration
 
-This repository was built to work with:
-* UR10e manipulator (Universal Robot 10 e-series)
-* Ubuntu 20.04.3 LTS
-* ROS Noetic
-
-## Installation
-
-### On UR10e controller 
+This configuration only needs to be done once when setting up the robot.
 
 <details>
 <summary>Click for details...</summary>
@@ -64,8 +62,12 @@ Installation > Fieldbus > EtherNet/IP > Disable
 
 </details>
 
-### On computer
+## Installation
 
+### On Ubuntu 20
+
+<details>
+<summary>Click for details...</summary>
 First, it is required to have MoveIt and other packages installed in your system:
 
 ```
@@ -129,15 +131,29 @@ After you connect the cable, you need to configure the IPv4 like this:
    cd ~/catkin_ws
    catkin_make
    ```
+</details>
 
-### With Docker
+### Using Docker (recommended)
+
+After installing [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Distrobox](https://github.com/89luca89/distrobox?tab=readme-ov-file#installation), build one of the docker images with ROS Noetic available at [lar_docker](https://github.com/lardemua/lar_docker). The Dockerfile available in this repository uses the one with Cuda 11.8 by default.
+
+Next build the larcc image from the Dockerfile in this repository:
 
 ```
 docker build -t lardemua/larcc-distrobox .
 ```
 
+Create and enter the created distrobox:
+
 ```
 SHELL=/bin/bash distrobox create --image lardemua/larcc-distrobox --name larcc-distrobox --additional-flags "--gpus all" --home $HOME/larcc-distrobox
+distrobox enter larcc-distrobox
+```
+
+Set up ROS for your user inside the distrobox:
+
+```
+/user-setup.sh
 ```
 
 ## Controlling UR10e through MoveIt with RViz

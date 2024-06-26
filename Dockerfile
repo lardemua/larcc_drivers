@@ -1,4 +1,5 @@
-# Use distrobox image with ROS Noetic and CUDA 11.8 as base
+# Use distrobox image with ROS Noetic with or without CUDA 11.8 as base
+# FROM lardemua/ros-distrobox:noetic
 FROM lardemua/ros-cuda-distrobox:noetic-11.8
 
 RUN apt-get update && apt-get upgrade -y
