@@ -1,0 +1,5 @@
+<launch>
+    <node name="arm_gripper_movement" pkg="larcc_examples" type="arm_gripper_movement_quaternions.py" output="screen">
+        <param name="quaternion_poses" value="$(find larcc_examples)/config/quaternion_positions.json"/>
+    </node>
+</launch>
