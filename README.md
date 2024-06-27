@@ -1,6 +1,6 @@
 # larcc_drivers
 
-This repository was built to work with:
+This repository contains the drivers and configurations needed to work with the LAR Collaborative Cell. It was built to work with:
 * UR10e manipulator (Universal Robot 10 e-series)
 * Ubuntu 20.04.3 LTS or other Linux distros using Docker
 * ROS Noetic
@@ -9,7 +9,7 @@ This repository was built to work with:
 
 1. [UR10e Controller Configuration](#ur10e-controller-configuration)
 2. [Installation](#installation)
-3. [Controlling UR10e through MoveIt with RViz](#controlling-ur10e-through-moveit-with-rviz)
+3. [Controlling the UR10e through MoveIt](#controlling-the-ur10e-through-moveit)
 4. [Real-time UR10e following a tracked object](#real-time-ur10e-following-a-tracked-object)
 5. [Gripper Remote Control](#gripper-remote-control)
 6. [Real-time UR10e following & picking a tracked object](#real-time-ur10e-following-&-picking-a-tracked-object)
@@ -156,32 +156,52 @@ Set up ROS for your user inside the distrobox:
 /user-setup.sh
 ```
 
-## Controlling UR10e through MoveIt with RViz
-Just need to follow these next 4 steps to remotely control the real UR10e robot, connected via the Ethernet cable to your computer.
+## Controlling the UR10e through MoveIt
 
-1. ```roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.56.2 ```
-2. Run the external control program on the teach pendant:
+Follow the next 4 steps to remotely control the real UR10e robot:
+
+1. Connect the robot to your computer using the Ethernet cable.
+
+2. Launch the robot drivers with:
+
+   ```
+   roslaunch larcc_bringup ur10e_bringup.launch
+   ```
+
+3. Run the external control program on the teach pendant:
 
    Click on *Program* + *URCaps* + *External Control* + Press "play"
 
-![tp7](docs/tp2.jpg)
+   ![tp7](docs/tp2.jpg)
 
-At this point, you should get the message "_Robot connected to reverse interface. Ready to receive control commands._" printed out on your terminal window.
+   At this point, you should get the message "_Robot connected to reverse interface. Ready to receive control commands._" printed out on your terminal window, just like this:
 
-3. ``` roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch```
+   ![tp8](docs/you_can_start_planning.png)
 
-At this point, you should get the green message "_You can start planning now!_" printed out on your terminal window, just like this:
+4. Then you have 3 options to control the robot:
+   
+   - control the robot using a Python script for joint positions:
 
-![tp8](docs/you_can_start_planning.png)
+      ```
+      roslaunch larcc_examples arm_gripper_movement_joints.launch
+      ```
 
-4. ``` roslaunch ur10e_moveit_config moveit_rviz.launch config:=true```
+   - control the robot using a Python script for 3D positions with quaternions:
 
+      ```
+      roslaunch larcc_examples arm_gripper_movement_quaternions.launch
+      ```
+   
+   - control the robot using the MoveIt Rviz interface:
 
-Now you can control the real robot, by simply moving the manipulator marker on RViz and then asking the robot to move to that goal (using the Motion Planning Panel).
-MoveIt will plan the trajetory.
+      ```
+      roslaunch ur10e_moveit_config moveit_rviz.launch config:=true
+      ```
 
-[//]: # (![tp9]&#40;docs/UR10e_moving_moveit.gif&#41;)
-![tp9](docs/ur10e_external_control.gif)
+      With this interface, you can control the real robot by simply moving the manipulator marker on RViz, and then asking the robot to move to that goal (using the Motion Planning Panel). MoveIt will plan the trajetory.
+
+      [//]: # (![tp9]&#40;docs/UR10e_moving_moveit.gif&#41;)
+      ![tp9](docs/ur10e_external_control.gif)
 
 ## Real-time UR10e following a tracked object
 By using ViSP RGB-D object tracking (see [this repository](https://github.com/afonsocastro/generic-rgbd)) and MoveIt to remotely control the UR10e,
