@@ -31,6 +31,7 @@
     <xacro:include filename="$(find gripper)/urdf/robotiq_arg2f_140_model_macro.xacro" />
     <xacro:include filename="$(find larcc_cell_description)/urdf/table.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/gantry.macro.xacro"/>
+    <xacro:include filename="$(find larcc_cell_description)/urdf/wood_block.macro.xacro"/>
 
 <!--    Place gantry-->
 
@@ -67,11 +68,14 @@
                 rpy="-1.9962039976135075 1.491251777066553 -2.0400319820116386"/>
     </xacro:sensor_astra>
 
-<!--    &lt;!&ndash; Astra top before calibration &ndash;&gt;-->
-<!--    <xacro:sensor_astra prefix="camera_gripper" parent="end_effector">-->
-<!--        <origin xyz="-0.12 -0.05 -0.1"-->
-<!--                rpy="${-M_PI/2} ${M_PI/8} 0"/>-->
-<!--    </xacro:sensor_astra>-->
+    <xacro:sensor_astra prefix="camera_right" parent="world">
+        <origin xyz="-0.6 0.6 1.2"
+                rpy="0 0 0"/>
+    </xacro:sensor_astra>
+
+    <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">
+        <origin xyz="-0.4 0.32 0.5" rpy="${M_PI/2} 0 0"/>
+    </xacro:wood_block_macro>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
@@ -169,7 +173,7 @@
           <box size="5 5 0.1"/>
         </geometry>
         <material name="red">
-          <color rgba="0.5 0 0 0.5"/>
+          <color rgba="0.5 0 0 0"/>
         </material>
       </visual>
     </link>
