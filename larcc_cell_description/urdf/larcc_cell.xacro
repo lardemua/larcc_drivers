@@ -69,8 +69,8 @@
     </xacro:sensor_astra>
 
     <xacro:sensor_astra prefix="camera_right" parent="world">
-        <origin xyz="-0.6 0.6 1.2"
-                rpy="0 0 0"/>
+        <origin xyz="-0.45 0.6 1.46"
+                rpy="0 ${M_PI/6} ${-M_PI/4}"/>
     </xacro:sensor_astra>
 
     <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">
@@ -158,6 +158,35 @@
                        tabletop_thickness="0.015" leg_radius="0.02">
         <origin xyz="${(0.9+0.7)/2} 0 0" rpy="0 0 0"/>
     </xacro:table_macro>
+
+    <link name="table_beam">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://larcc_cell_description/meshes/minitec_45x45_1500.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.045 0.045 1.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1.0" />
+            <origin xyz="0.0 0.0 ${0.75/2-40-0.001}" rpy="0 0 0" />
+            <inertia ixx="0.1" ixy="0"  ixz="0"
+                     iyy="0.1" iyz="0"
+                     izz="0.01" />
+        </inertial>
+    </link>
+
+    <joint name="table_base_to_table_beam" type="fixed">
+        <parent link="table_base" />
+        <child link="table_beam" />
+        <origin xyz="0.305 -0.625 0.0025" rpy="${M_PI/2} 0 0"/>
+    </joint>
 
      <!-- Collision box representing the ceiling -->
     <link name="virtual_ceiling">

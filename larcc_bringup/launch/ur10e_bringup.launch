@@ -5,7 +5,7 @@
         <arg name="robot_ip" value="192.168.56.2"/>
     </include>
 
-    <node pkg="scripts" type="client.py" name="client"/>
+<!--     <node pkg="scripts" type="client.py" name="client"/> -->
 
 <!--     <include file="$(find ur10e_moveit_config)/launch/ur10e_moveit_planning_execution.launch"> -->
 <!--     </include> -->
