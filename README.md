@@ -108,9 +108,49 @@ After you connect the cable, you need to configure the IPv4 like this:
 
 ![tp6](docs/ip.jpeg)
 
-### Set up camera dependencies
+#### Set up camera dependencies
 
-1. For the astra_camera package, follow the instructions in the [ros_astra_camera repository](https://github.com/orbbec/ros_astra_camera).
+1. For the astra_camera package, install the following dependencies:
+
+   ```
+   sudo apt-get install -y libgflags-dev ros-noetic-image-geometry ros-noetic-camera-info-manager \
+      ros-noetic-image-transport ros-noetic-image-publisher libgoogle-glog-dev libusb-1.0-0-dev libeigen3-dev
+   ```
+
+   and install libuvc:
+
+   ```
+      git clone https://github.com/libuvc/libuvc.git
+      cd libuvc
+      mkdir build && cd build
+      cmake .. && make -j4
+      sudo make install
+      sudo ldconfig
+   ```
+
+   Then clone the [ros_astra_camera repository](https://github.com/orbbec/ros_astra_camera):
+   
+   ```
+   cd ~/catkin_ws/src
+   git clone https://github.com/orbbec/ros_astra_camera.git
+   ```
+   
+   Compile your catkin workspace:
+
+   ```
+   cd ~/catkin_ws
+   catkin_make
+   ```
+
+   Install udev rules:
+
+   ```
+   roscd astra_camera
+   sudo cp 56-orbbec-usb.rules /etc/udev/rules.d
+   sudo service udev reload
+   sudo service udev restart
+   sudo udevadm control --reload && sudo  udevadm trigger
+   ```
 
 2. For the usb_cam package, install the following dependencies:
 
@@ -154,6 +194,31 @@ Set up ROS for your user inside the distrobox:
 
 ```
 /user-setup.sh
+```
+
+Clone the [usb_cam repository](https://github.com/lardemua/usb_cam) and the [ros_astra_camera repository](https://github.com/orbbec/ros_astra_camera):
+
+```
+cd ~/catkin_ws/src
+git clone https://github.com/lardemua/usb_cam.git
+git clone https://github.com/orbbec/ros_astra_camera.git
+```
+
+Compile your catkin workspace.
+
+```
+cd ~/catkin_ws
+catkin_make
+```
+
+Install udev rules by running the following outside the container:
+
+```
+cd $HOME/larcc-distrobox/catkin_ws/src/ros_astra_camera
+sudo cp 56-orbbec-usb.rules /etc/udev/rules.d
+sudo service udev reload
+sudo service udev restart
+sudo udevadm control --reload && sudo  udevadm trigger
 ```
 
 ## Controlling the UR10e through MoveIt
