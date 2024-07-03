@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot name="wood_block_macro" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="wood_block_macro" params="parent *origin">
+        <link name="wood_block">
+            <inertial>
+                <origin rpy="0 0 0" xyz="0.07 0.05 0.03"/>
+                <mass value=".1"/>
+                <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+            </inertial>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://larcc_cell_description/meshes/wood_block/wood_block.dae"/>
+                </geometry>
+<!--                <material name="wood"/>-->
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+	 	            <mesh filename="package://larcc_cell_description/meshes/wood_block/wood_block.dae"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${parent}_to_wood_block" type="fixed">
+            <parent link="${parent}" />
+            <child link="wood_block" />
+            <xacro:insert_block name="origin"/>
+        </joint>
+    </xacro:macro>
+</robot>
