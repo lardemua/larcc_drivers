@@ -69,8 +69,8 @@
     </xacro:sensor_astra>
 
     <xacro:sensor_astra prefix="camera_right" parent="world">
-        <origin xyz="-0.45 0.6 1.46"
-                rpy="0 ${M_PI/6} ${-M_PI/4}"/>
+        <origin xyz="-0.48769570892652475 0.6173557198083176 1.2749729084453454"
+                rpy="0.23398734259638992 0.2798020805942116 -0.738576391893694"/>
     </xacro:sensor_astra>
 
     <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">

@@ -2,4 +2,6 @@
     <include file="$(find larcc_bringup)/launch/ur10e_bringup.launch" />
 
     <include file="$(find larcc_bringup)/launch/cameras.launch" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_bringup)/rviz/bringup.rviz" required="true"/>
 </launch>
