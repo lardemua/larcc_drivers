@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="hand_macro" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="hand_macro" params="parent *origin">
+        <link name="hand">
+            <inertial>
+                <origin rpy="0 0 0" xyz="0.07 0.05 0.03"/>
+                <mass value=".1"/>
+                <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+            </inertial>
+            <visual>
+                <origin rpy="${-M_PI/6} ${M_PI/2} ${-M_PI/8}" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://larcc_cell_description/meshes/extras/right_hand.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name="blue">
+                    <color rgba="0.87843 0.6745 0.41176 1"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${parent}_to_hand" type="fixed">
+            <parent link="${parent}" />
+            <child link="hand" />
+            <xacro:insert_block name="origin"/>
+        </joint>
+    </xacro:macro>
+</robot>

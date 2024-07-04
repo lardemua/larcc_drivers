@@ -32,6 +32,7 @@
     <xacro:include filename="$(find larcc_cell_description)/urdf/table.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/gantry.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/wood_block.macro.xacro"/>
+    <xacro:include filename="$(find larcc_cell_description)/urdf/hand.macro.xacro"/>
 
 <!--    Place gantry-->
 
@@ -74,8 +75,12 @@
     </xacro:sensor_astra>
 
     <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">
-        <origin xyz="-0.4 0.32 0.5" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="0 0.25 0.7" rpy="${M_PI/2} 0 0"/>
     </xacro:wood_block_macro>
+
+    <xacro:hand_macro parent="camera_top_rgb_optical_frame">
+        <origin xyz="0 -0.1 1.5" rpy="0 ${-M_PI} 0"/>
+    </xacro:hand_macro>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
