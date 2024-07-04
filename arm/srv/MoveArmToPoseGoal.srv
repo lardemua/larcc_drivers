@@ -1,6 +1,7 @@
 geometry_msgs/Pose goal
 float32 velocity
 float32 acceleration
+bool cartesian
 bool wait
 ---
 string status

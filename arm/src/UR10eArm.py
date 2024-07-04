@@ -97,8 +97,13 @@ class UR10eArm(object):
         self.move_group.set_max_acceleration_scaling_factor(req.acceleration)
 
         # Now, we call the planner to compute the plan and execute it.
-        self.move_group.set_pose_target(req.goal)
-        success, plan, planning_time, error_code = self.move_group.plan()
+        if req.cartesian:
+            plan, fraction = self.move_group.compute_cartesian_path([req.goal], 0.1, 0.0)
+            success = fraction == 1.0
+            error_code = fraction
+        else:
+            self.move_group.set_pose_target(req.goal)
+            success, plan, planning_time, error_code = self.move_group.plan()
 
         # It is always good to clear your targets after planning with poses.
         self.move_group.clear_pose_targets()

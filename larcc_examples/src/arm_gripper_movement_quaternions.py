@@ -67,7 +67,7 @@ while True:
         pose_goal.orientation.z = pos[5]
         pose_goal.orientation.w = pos[6]
         
-        req = MoveArmToPoseGoalRequest(goal=pose_goal, velocity=0.2, acceleration=0.2, wait=False)
+        req = MoveArmToPoseGoalRequest(goal=pose_goal, velocity=0.2, acceleration=0.2, wait=False, cartesian=True)
 
         try:
             resp = move_arm_to_pose_goal_proxy(req)
