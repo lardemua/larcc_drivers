@@ -1,5 +1,9 @@
 <launch>
-    <include file="$(find larcc_bringup)/launch/ur10e_bringup.launch" />
+    <arg name="velocity_controller" default="false"/>
+
+    <include file="$(find larcc_bringup)/launch/ur10e_bringup.launch">
+        <arg name="velocity_controller" value="$(arg velocity_controller)"/>
+    </include>
 
     <include file="$(find larcc_bringup)/launch/cameras.launch" />
 

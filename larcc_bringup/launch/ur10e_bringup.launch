@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
 <launch>
+    <arg name="velocity_controller" default="false"/>
+
     <include file="$(find ur_robot_driver)/launch/ur10e_bringup.launch">
         <arg name="robot_ip" value="192.168.56.2"/>
     </include>
@@ -10,8 +12,11 @@
 
     <node pkg="gripper_action_server" type="gripper_action_server_node.py" name="gripper_action_server"/>
 
-<!--      --><!-- While actions are not available for quaternions poses, the node below can be used for doing movements using services -->
-    <node pkg="arm" type="UR10eArm.py" name="ur10e_arm"/>
+    <!-- This node provides custom services in ROS to facilitate moving the robot with MoveIt! -->
+    <node pkg="arm" type="UR10eArm.py" name="ur10e_arm" unless="$(arg velocity_controller)"/>
+
+    <!-- This node provides a tracker to continuously move the robot with a velocity controller to a target pose -->
+    <node pkg="arm" type="rt_vel_controller.py" name="rt_vel_controller" if="$(arg velocity_controller)"/>
 
 <!--     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_bringup)/rviz/ur10e_gantry_tables.rviz" required="true"/> -->
 </launch>
