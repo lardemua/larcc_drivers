@@ -14,12 +14,12 @@ def quaternion_to_rotvec(quaternion):
     Converts a quaternion to a rotation vector.
     
     Parameters:
-    quaternion (array-like): A quaternion [w, x, y, z]
+    quaternion (array-like): A quaternion [x, y, z, w]
     
     Returns:
     numpy.ndarray: A rotation vector [rx, ry, rz]
     """
-    w, x, y, z = quaternion
+    x, y, z, w = quaternion
     angle = 2 * np.arccos(w)
     s = np.sqrt(1 - w*w)  # sin(angle/2)
     
@@ -86,12 +86,15 @@ class RTVelController:
                 continue
 
             (trans, rot) = self.listener.lookupTransform('/base', '/goal', rospy.Time())
+            goal = np.hstack((trans, rot)) # [x, y, z, qx, qy, qz, qw]
+
+            if not self.rtde_c.isPoseWithinSafetyLimits(np.hstack((goal[0:3], quaternion_to_rotvec(goal[3:])))):
+                self.rtde_c.jogStart([0,0,0,0,0,0], acc=1)
+                continue
 
             current = np.array(self.rtde_r.getActualTCPPose())
             temp = rotvec_to_quaternion(current[3:])
             current = np.hstack((current[0:3], temp[1:], [temp[0]])) # [x, y, z, qx, qy, qz, qw]
-
-            goal = np.hstack((trans, rot)) # [x, y, z, qx, qy, qz, qw]
 
             diff = np.hstack((goal[0:3] - current[0:3], calculate_angular_velocity(current[3:], goal[3:])))
 
