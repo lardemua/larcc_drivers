@@ -32,7 +32,6 @@
     <xacro:include filename="$(find larcc_cell_description)/urdf/table.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/gantry.macro.xacro"/>
     <xacro:include filename="$(find larcc_cell_description)/urdf/wood_block.macro.xacro"/>
-    <xacro:include filename="$(find larcc_cell_description)/urdf/hand.macro.xacro"/>
 
 <!--    Place gantry-->
 
@@ -52,13 +51,6 @@
         <origin xyz="0 0 -0.015" rpy="0 0 0"/>
     </joint>
 
-<!--    Place d45i camera-->
-<!--    Note: should add Pi value (3.14159) to second rotation value (p)-->
-<!--    <xacro:realsense2_camera parent="world" use_nominal_extrinsics="true">-->
-<!--&lt;!&ndash;        <origin xyz="-0.507 0.222 1.312" rpy="3.107 2.5559 -3.080"/>&ndash;&gt;-->
-<!--        <origin xyz="-0.507 0.222 1.312" rpy="0.5640801120207652 0.03410154422820706 -1.8394088703112872"/>-->
-<!--    </xacro:realsense2_camera>-->
-
     <xacro:sensor_astra prefix="camera_behind" parent="world">
         <origin xyz="0.8481721310949765 1.224365708088931 2.3511875266550333"
                 rpy="-0.19718554582052114 0.5342533504487207 -1.8821968275695813"/>
@@ -77,10 +69,6 @@
     <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">
         <origin xyz="0 0.25 0.7" rpy="${M_PI/2} 0 0"/>
     </xacro:wood_block_macro>
-
-    <xacro:hand_macro parent="camera_top_rgb_optical_frame">
-        <origin xyz="0 -0.1 1.5" rpy="0 ${-M_PI} 0"/>
-    </xacro:hand_macro>
 
     <joint name="tool0-FT_sensor_base" type="fixed">
         <parent link="tool0"/>
