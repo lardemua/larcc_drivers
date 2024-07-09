@@ -79,11 +79,12 @@ class RTVelController:
         rate  = rospy.Rate(100)
 
         while not rospy.is_shutdown():
-            if not self.listener.frameExists("/goal") or not self.listener.frameExists("/base"):
+            try:
+                self.listener.waitForTransform('/base', '/goal', rospy.Time(), rospy.Duration(60))
+            except:
                 rate.sleep()
                 continue
 
-            self.listener.waitForTransform('/base', '/goal', rospy.Time(), rospy.Duration(1))
             (trans, rot) = self.listener.lookupTransform('/base', '/goal', rospy.Time())
 
             current = np.array(self.rtde_r.getActualTCPPose())
