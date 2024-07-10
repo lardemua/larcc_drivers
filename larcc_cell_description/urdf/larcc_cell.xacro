@@ -51,10 +51,10 @@
         <origin xyz="0 0 -0.015" rpy="0 0 0"/>
     </joint>
 
-    <xacro:sensor_astra prefix="camera_behind" parent="world">
-        <origin xyz="0.8481721310949765 1.224365708088931 2.3511875266550333"
-                rpy="-0.19718554582052114 0.5342533504487207 -1.8821968275695813"/>
-    </xacro:sensor_astra>
+<!--    <xacro:sensor_astra prefix="camera_behind" parent="world">-->
+<!--        <origin xyz="0.8481721310949765 1.224365708088931 2.3511875266550333"-->
+<!--                rpy="-0.19718554582052114 0.5342533504487207 -1.8821968275695813"/>-->
+<!--    </xacro:sensor_astra>-->
 
     <xacro:sensor_astra prefix="camera_top" parent="world">
         <origin xyz="0.09511408182797733 0.14905972847160784 2.4330682231422602"
@@ -62,8 +62,8 @@
     </xacro:sensor_astra>
 
     <xacro:sensor_astra prefix="camera_right" parent="world">
-        <origin xyz="-0.48769570892652475 0.6173557198083176 1.2749729084453454"
-                rpy="0.23398734259638992 0.2798020805942116 -0.738576391893694"/>
+        <origin xyz="-0.47389933117248495 0.6050706033175103 1.2510900165155419"
+                rpy="0.1688160669718149 0.3885697035429511 -0.6796268633018927"/>
     </xacro:sensor_astra>
 
     <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">

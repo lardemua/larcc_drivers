@@ -4,7 +4,7 @@
 <launch>
     <arg name="camera1_prefix" default="right"/>
     <arg name="camera2_prefix" default="top"/>
-    <arg name="camera3_prefix" default="behind"/>
+<!--     <arg name="camera3_prefix" default="behind"/> -->
 
     <arg name="camera1_serial_number" default="20101230086"/>
     <arg name="camera2_serial_number" default="19052130216"/>
@@ -21,53 +21,53 @@
       <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera2_prefix).yml"/>
     </node>
 
-    <!-- usb_cam node to publish rgb images from behind camera -->
-    <node name="color" ns="camera_$(arg camera3_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen">
-      <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera3_prefix).yml"/>
-    </node>
+<!--      --><!-- usb_cam node to publish rgb images from behind camera -->
+<!--     <node name="color" ns="camera_$(arg camera3_prefix)" pkg="usb_cam" type="usb_cam_node" output="screen"> -->
+<!--       <rosparam command="load" file="$(find larcc_bringup)/config/camera_$(arg camera3_prefix).yml"/> -->
+<!--     </node> -->
 
-    <!-- astra_camera node to publish depth images from right camera -->
-    <include file="$(find astra_camera)/launch/astra_pro.launch">
-        <arg name="camera_name" value="camera_$(arg camera1_prefix)"/>
-        <arg name="enable_point_cloud" value="false"/>
-        <arg name="publish_tf" default="false"/>
-        <arg name="depth_width" default="1280"/>
-        <arg name="depth_height" default="720"/>
-        <arg name="depth_fps" default="7"/>
-        <arg name="enable_color" value="false"/>
-        <arg name="enable_ir" default="false"/>
-        <arg name="use_uvc_camera" value="false"/>
-        <arg name="serial_number" value="$(arg camera1_serial_number)"/>
-        <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
-    </include>
+<!--      --><!-- astra_camera node to publish depth images from right camera -->
+<!--     <include file="$(find astra_camera)/launch/astra_pro.launch"> -->
+<!--         <arg name="camera_name" value="camera_$(arg camera1_prefix)"/> -->
+<!--         <arg name="enable_point_cloud" value="false"/> -->
+<!--         <arg name="publish_tf" default="false"/> -->
+<!--         <arg name="depth_width" default="1280"/> -->
+<!--         <arg name="depth_height" default="720"/> -->
+<!--         <arg name="depth_fps" default="7"/> -->
+<!--         <arg name="enable_color" value="false"/> -->
+<!--         <arg name="enable_ir" default="false"/> -->
+<!--         <arg name="use_uvc_camera" value="false"/> -->
+<!--         <arg name="serial_number" value="$(arg camera1_serial_number)"/> -->
+<!--         <arg name="device_num" value="$(arg num_orbbec_cameras)"/> -->
+<!--     </include> -->
 
-    <!-- astra_camera node to publish depth images from top camera -->
-    <include file="$(find astra_camera)/launch/astra_pro.launch">
-        <arg name="camera_name" value="camera_$(arg camera2_prefix)"/>
-        <arg name="enable_point_cloud" value="false"/>
-        <arg name="publish_tf" default="false"/>
-        <arg name="depth_width" default="640"/>
-        <arg name="depth_height" default="480"/>
-        <arg name="depth_fps" default="30"/>
-        <arg name="enable_color" value="false"/>
-        <arg name="enable_ir" default="false"/>
-        <arg name="use_uvc_camera" value="false"/>
-        <arg name="serial_number" value="$(arg camera2_serial_number)"/>
-        <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
-    </include>
+<!--      --><!-- astra_camera node to publish depth images from top camera -->
+<!--     <include file="$(find astra_camera)/launch/astra_pro.launch"> -->
+<!--         <arg name="camera_name" value="camera_$(arg camera2_prefix)"/> -->
+<!--         <arg name="enable_point_cloud" value="false"/> -->
+<!--         <arg name="publish_tf" default="false"/> -->
+<!--         <arg name="depth_width" default="640"/> -->
+<!--         <arg name="depth_height" default="480"/> -->
+<!--         <arg name="depth_fps" default="30"/> -->
+<!--         <arg name="enable_color" value="false"/> -->
+<!--         <arg name="enable_ir" default="false"/> -->
+<!--         <arg name="use_uvc_camera" value="false"/> -->
+<!--         <arg name="serial_number" value="$(arg camera2_serial_number)"/> -->
+<!--         <arg name="device_num" value="$(arg num_orbbec_cameras)"/> -->
+<!--     </include> -->
 
-    <!-- astra_camera node to publish depth images from behind camera -->
-    <include file="$(find astra_camera)/launch/astra_pro.launch">
-        <arg name="camera_name" value="camera_$(arg camera3_prefix)"/>
-        <arg name="enable_point_cloud" value="false"/>
-        <arg name="publish_tf" default="false"/>
-        <arg name="depth_width" default="640"/>
-        <arg name="depth_height" default="480"/>
-        <arg name="depth_fps" default="30"/>
-        <arg name="enable_color" value="false"/>
-        <arg name="enable_ir" default="false"/>
-        <arg name="use_uvc_camera" value="false"/>
-        <arg name="serial_number" value="$(arg camera3_serial_number)"/>
-        <arg name="device_num" value="$(arg num_orbbec_cameras)"/>
-    </include>
+<!--      --><!-- astra_camera node to publish depth images from behind camera -->
+<!--     <include file="$(find astra_camera)/launch/astra_pro.launch"> -->
+<!--         <arg name="camera_name" value="camera_$(arg camera3_prefix)"/> -->
+<!--         <arg name="enable_point_cloud" value="false"/> -->
+<!--         <arg name="publish_tf" default="false"/> -->
+<!--         <arg name="depth_width" default="640"/> -->
+<!--         <arg name="depth_height" default="480"/> -->
+<!--         <arg name="depth_fps" default="30"/> -->
+<!--         <arg name="enable_color" value="false"/> -->
+<!--         <arg name="enable_ir" default="false"/> -->
+<!--         <arg name="use_uvc_camera" value="false"/> -->
+<!--         <arg name="serial_number" value="$(arg camera3_serial_number)"/> -->
+<!--         <arg name="device_num" value="$(arg num_orbbec_cameras)"/> -->
+<!--     </include> -->
 </launch>
