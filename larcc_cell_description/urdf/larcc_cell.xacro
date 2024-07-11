@@ -156,14 +156,14 @@
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://larcc_cell_description/meshes/minitec_45x45_1500.STL" scale="0.001 0.001 0.001" />
+                <mesh filename="package://larcc_cell_description/meshes/bosch_40x40x150.STL" scale="0.001 0.01 0.001" />
             </geometry>
             <material name="grey"/>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0.02 0.75 0.02" rpy="${M_PI/2} 0 0" />
             <geometry>
-                <box size="0.045 0.045 1.5"/>
+                <box size="0.05 0.05 1.55"/>
             </geometry>
         </collision>
         <inertial>
@@ -178,7 +178,7 @@
     <joint name="table_base_to_table_beam" type="fixed">
         <parent link="table_base" />
         <child link="table_beam" />
-        <origin xyz="0.305 -0.625 0.0025" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="0.308 -0.625 0.0035" rpy="${M_PI/2} 0 0"/>
     </joint>
 
      <!-- Collision box representing the ceiling -->
