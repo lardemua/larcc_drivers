@@ -36,9 +36,9 @@
     <node name="hand_locator" pkg="larcc_antecipative_object_handover" type="hand_locator.py" output="screen" ns="camera_top"/>
 
     <!-- Hand Following Controller -->
-    <node name="hand_following" pkg="larcc_antecipative_object_handover" type="hand_following.py" output="screen"/>
+    <node name="hand_tracking" pkg="larcc_antecipative_object_handover" type="hand_tracking.py" output="screen"/>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_examples)/rviz/bringup.rviz" required="true"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_antecipative_object_handover)/config/hand_tracking.rviz" required="true"/>
 
 <!--     <node name="wood_block_client" pkg="scripts" type="wood_block_client.py" output="screen"/> -->
 </launch>
