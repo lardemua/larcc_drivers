@@ -66,8 +66,8 @@
                 rpy="0.1688160669718149 0.3885697035429511 -0.6796268633018927"/>
     </xacro:sensor_astra>
 
-    <xacro:wood_block_macro parent="camera_right_rgb_optical_frame">
-        <origin xyz="0 0.25 0.7" rpy="${M_PI/2} 0 0"/>
+    <xacro:wood_block_macro parent="world">
+        <origin xyz="0 0 0.86" rpy="0 0 ${M_PI}"/>
     </xacro:wood_block_macro>
 
     <joint name="tool0-FT_sensor_base" type="fixed">

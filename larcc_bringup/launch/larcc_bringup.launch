@@ -5,7 +5,7 @@
         <arg name="velocity_controller" value="$(arg velocity_controller)"/>
     </include>
 
-    <include file="$(find larcc_bringup)/launch/cameras.launch" />
+<!--     <include file="$(find larcc_bringup)/launch/cameras.launch" /> -->
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_bringup)/rviz/bringup.rviz" required="true"/>
 </launch>

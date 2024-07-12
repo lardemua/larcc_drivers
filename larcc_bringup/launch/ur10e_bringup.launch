@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-    <arg name="velocity_controller" default="false"/>
+    <arg name="velocity_controller" default="true"/>
 
     <include file="$(find ur_robot_driver)/launch/ur10e_bringup.launch">
         <arg name="robot_ip" value="192.168.56.2"/>
@@ -16,6 +16,7 @@
     <node pkg="arm" type="UR10eArm.py" name="ur10e_arm" unless="$(arg velocity_controller)"/>
 
     <!-- This node provides a tracker to continuously move the robot with a velocity controller to a target pose -->
+<!--     <node pkg="arm" type="rt_vel_controller.py" name="rt_vel_controller" if="$(arg velocity_controller)" launch-prefix="xterm -e"/> -->
     <node pkg="arm" type="rt_vel_controller.py" name="rt_vel_controller" if="$(arg velocity_controller)"/>
 
 <!--     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find larcc_bringup)/rviz/ur10e_gantry_tables.rviz" required="true"/> -->
